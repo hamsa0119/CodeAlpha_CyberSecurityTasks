@@ -43,6 +43,6 @@ def process_packet(packet):
 
 
 if __name__ == "__main__":
-    print("Sniffing started... (capturing 20 packets, Ctrl+C to stop)")
-    sniff(prn=process_packet, count=20, store=False)
+    print("Sniffing started... (capturing 50 IPv4 packets, Ctrl+C to stop)")
+    sniff(filter="ip", prn=process_packet, count=50, store=False)
     print("Done.")
