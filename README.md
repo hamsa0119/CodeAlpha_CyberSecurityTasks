@@ -6,5 +6,5 @@ Tasks completed during the CodeAlpha Cyber Security Internship.
 |---|---|---|
 | Phishing Awareness Training | [CodeAlpha_PhishingAwareness](./CodeAlpha_PhishingAwareness) | Done |
 | Secure Coding Review | [CodeAlpha_SecureCodingReview](./CodeAlpha_SecureCodingReview) | Done |
-
+| Basic Network Sniffer | [CodeAlpha_NetworkSniffer](CodeAlpha_NetworkSniffer) | Done |
 By Hamsa
