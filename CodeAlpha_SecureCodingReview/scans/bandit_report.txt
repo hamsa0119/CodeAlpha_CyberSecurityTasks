@@ -1,0 +1,209 @@
+Run started:2026-10-24 05:57:12.458543+00:00
+
+Test results:
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'secret'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\app\app.py:26:11
+25	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+26	app.config['SECRET_KEY_HMAC'] = 'secret'
+27	app.config['SECRET_KEY_HMAC_2'] = 'am0r3C0mpl3xK3y'
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'am0r3C0mpl3xK3y'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\app\app.py:27:11
+26	app.config['SECRET_KEY_HMAC'] = 'secret'
+27	app.config['SECRET_KEY_HMAC_2'] = 'am0r3C0mpl3xK3y'
+28	app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'F12Zr47jyX R~X@H!jmM]Lwf/,?KT'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\app\app.py:28:17
+27	app.config['SECRET_KEY_HMAC_2'] = 'am0r3C0mpl3xK3y'
+28	app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+29	app.config['STATIC_FOLDER'] = None
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'admin123'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\app\app.py:63:24
+62	        user.username = 'admin'
+63	        user.password = 'admin123'
+64	        db.session.add(user)
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b324_hashlib.html
+   Location: .\app\app.py:141:24
+140	            password = content['password']
+141	            hash_pass = hashlib.md5(password).hexdigest()
+142	            new_user = User(username, hash_pass)
+
+--------------------------------------------------
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html
+   Location: .\app\app.py:261:32
+260	                    print(search_term)
+261	                    str_query = "SELECT first_name, last_name, username FROM customer WHERE username = '%s';" % search_term
+262	                    # mycust = Customer.query.filter_by(username = search_term).first()
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: .\app\app.py:295:15
+294	        f = request.files['file']
+295	        rand = random.randint(1, 100)
+296	        fname = secure_filename(f.filename)
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_calls.html#b311-random
+   Location: .\app\app.py:319:15
+318	        f = request.files['file']
+319	        rand = random.randint(1, 100)
+320	        fname = secure_filename(f.filename)
+
+--------------------------------------------------
+>> Issue: [B506:yaml_load] Use of unsafe yaml load. Allows instantiation of arbitrary objects. Consider yaml.safe_load().
+   Severity: Medium   Confidence: High
+   CWE: CWE-20 (https://cwe.mitre.org/data/definitions/20.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b506_yaml_load.html
+   Location: .\app\app.py:329:16
+328	
+329	        ydata = yaml.load(y)
+330	
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'admin123'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: .\tests\e2e_zap.py:15:34
+14	
+15	auth_dict = {'username': 'admin', 'password': 'admin123'}
+16	
+
+--------------------------------------------------
+>> Issue: [B501:request_with_no_cert_validation] Call to requests with verify=False disabling SSL certificate checks, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-295 (https://cwe.mitre.org/data/definitions/295.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b501_request_with_no_cert_validation.html
+   Location: .\tests\e2e_zap.py:18:8
+17	login = requests.post(target_url + '/login',
+18	                      proxies=proxies, json=auth_dict, verify=False)
+19	
+20	
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: .\tests\e2e_zap.py:17:8
+16	
+17	login = requests.post(target_url + '/login',
+18	                      proxies=proxies, json=auth_dict, verify=False)
+19	
+
+--------------------------------------------------
+>> Issue: [B501:request_with_no_cert_validation] Call to requests with verify=False disabling SSL certificate checks, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-295 (https://cwe.mitre.org/data/definitions/295.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b501_request_with_no_cert_validation.html
+   Location: .\tests\e2e_zap.py:29:18
+28	    get_cust_id = requests.get(
+29	        target_url + '/get/2', proxies=proxies, headers=auth_header, verify=False)
+30	    if get_cust_id.status_code == 200:
+31	        print("Get Customer by ID Response")
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: .\tests\e2e_zap.py:28:18
+27	
+28	    get_cust_id = requests.get(
+29	        target_url + '/get/2', proxies=proxies, headers=auth_header, verify=False)
+30	    if get_cust_id.status_code == 200:
+
+--------------------------------------------------
+>> Issue: [B501:request_with_no_cert_validation] Call to requests with verify=False disabling SSL certificate checks, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-295 (https://cwe.mitre.org/data/definitions/295.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b501_request_with_no_cert_validation.html
+   Location: .\tests\e2e_zap.py:37:26
+36	    fetch_customer_post = requests.post(
+37	        target_url + '/fetch/customer', json=post, proxies=proxies, headers=auth_header, verify=False)
+38	    if fetch_customer_post.status_code == 200:
+39	        print("Fetch Customer POST Response")
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: .\tests\e2e_zap.py:36:26
+35	    post = {'id': 2}
+36	    fetch_customer_post = requests.post(
+37	        target_url + '/fetch/customer', json=post, proxies=proxies, headers=auth_header, verify=False)
+38	    if fetch_customer_post.status_code == 200:
+
+--------------------------------------------------
+>> Issue: [B501:request_with_no_cert_validation] Call to requests with verify=False disabling SSL certificate checks, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-295 (https://cwe.mitre.org/data/definitions/295.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b501_request_with_no_cert_validation.html
+   Location: .\tests\e2e_zap.py:45:31
+44	    search_customer_username = requests.post(
+45	        target_url + '/search', json=search, proxies=proxies, headers=auth_header, verify=False)
+46	    if search_customer_username.status_code == 200:
+47	        print("Search Customer POST Response")
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: .\tests\e2e_zap.py:44:31
+43	    search = {'search': 'dleon'}
+44	    search_customer_username = requests.post(
+45	        target_url + '/search', json=search, proxies=proxies, headers=auth_header, verify=False)
+46	    if search_customer_username.status_code == 200:
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 339
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 7
+		Medium: 6
+		High: 5
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 5
+		Medium: 5
+		High: 8
+Files skipped (0):
